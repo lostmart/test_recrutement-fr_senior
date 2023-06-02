@@ -1,0 +1,10 @@
+@import '../../styles/abstracts/colors';
+@import '../../styles/abstracts/variables';
+
+.eventContainer {
+	width: 100%;
+	background-color: $prim-clr;
+	padding: $spacing-one;
+	border: 1px solid $font-clr;
+	position: absolute;
+}
