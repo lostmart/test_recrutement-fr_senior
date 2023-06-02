@@ -1,0 +1,10 @@
+@import 'abstracts/colors';
+@import 'abstracts/variables';
+@import 'base/typography';
+@import 'base/reset';
+@import 'layout/container';
+
+body {
+	font-family: $font-stack;
+	color: $font-clr;
+}
