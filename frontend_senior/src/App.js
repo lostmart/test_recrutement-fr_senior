@@ -6,15 +6,13 @@ import EventContainer from './components/EventContainer'
 import HourContainer from './components/HourContainer'
 
 const rednerHours = () => {
-	// console.log(inpuData)
-
 	/** Return an array of elements to stack in the container
 	 * each element corresponds an hour
 	 * @returns {JSX.Element}
 	 */
 	const elements = []
-	for (let i = 0; i < 12; i++) {
-		elements.push(<HourContainer key={i} />)
+	for (let i = 0; i < 13; i++) {
+		elements.push(<HourContainer key={i} hour={i + 9} />)
 	}
 
 	return elements

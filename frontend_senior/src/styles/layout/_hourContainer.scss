@@ -6,4 +6,13 @@
 		rgba(255, 255, 255, 0.09) 100%
 	);
 	border-top: 1px solid rgba(255, 255, 255, 0.09);
+	/*  border-top: 5px solid red;  */
+	display: flex;
+	justify-content: flex-end;
+
+	.timeArea {
+		opacity: 0.5;
+		font-size: 0.8em;
+		padding: 2px 4px;
+	}
 }
