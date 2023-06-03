@@ -1,15 +1,10 @@
-import { useEffect } from 'react'
-
 /*  mock data  */
 import inpuData from './data/input.json'
 
 /* helpers  */
-import EvenModel from './services/EventModel'
-import minutesFormat from './services/MinutesModel'
-
+import EventModel from './services/EventModel'
 import orderCronologically from './services/OrderCronollogically'
-import ElementCoordinates from './services/ElementCoordinatesModel'
-import detectCollission from './services/DetectCollission'
+import detectOverlaping from './services/detectOverlaping'
 
 /*  components  */
 import EventContainer from './components/EventContainer'
@@ -20,13 +15,15 @@ const formatData = (event) => {
 	 * Creates a new EventModel
 	 * @class
 	 */
-	const newEvent = new EvenModel(event)
+	const newEvent = new EventModel(event)
 	return newEvent
 }
 
 const formattedData = inpuData.map(formatData)
 
 const orderedEvents = orderCronologically(formattedData)
+
+detectOverlaping(orderedEvents)
 
 // console.log(orderedEvents)
 
@@ -54,6 +51,8 @@ const renderEvents = () => {
 				eventId={event.id}
 				duration={event.duration}
 				timeInMinutes={event.timeInMinutes}
+				width={event.width}
+				left={event.left}
 			/>
 		)
 	})
@@ -65,13 +64,14 @@ function App() {
 	 * two render functions renderHours() & renderEvents()
 	 */
 
-	useEffect(() => {
-		const eventsDomArray = document.querySelectorAll('[data-event]')
-		eventsDomArray.forEach((elem) => {
-			const domElem = new ElementCoordinates(elem)
-			// console.log(detectCollission(domElem.bounderies))
-		})
-	}, [])
+	// TAL VEZ NO LO NECESITE
+	// useEffect(() => {
+	// 	const eventsDomArray = document.querySelectorAll('[data-event]')
+	// 	eventsDomArray.forEach((elem) => {
+	// 		const domElem = new ElementCoordinates(elem)
+	// 		// console.log(detectCollission(domElem.bounderies))
+	// 	})
+	// }, [])
 
 	return (
 		<div className="container">

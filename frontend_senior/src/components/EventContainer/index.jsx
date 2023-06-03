@@ -2,10 +2,9 @@ import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 
 /*  helpers  */
-import MinutesFormat from '../../services/MinutesModel'
 import placeCalculator from '../../services/PlaceCalculator'
 
-const EventContainer = ({ eventId, duration, timeInMinutes }) => {
+const EventContainer = ({ eventId, duration, timeInMinutes, width, left }) => {
 	const porcetangeFromTop = placeCalculator(timeInMinutes.totalMinutes)
 	const endTime = placeCalculator(duration)
 	return (
@@ -15,7 +14,8 @@ const EventContainer = ({ eventId, duration, timeInMinutes }) => {
 			style={{
 				top: `${porcetangeFromTop}%`,
 				height: `${endTime}%`,
-				width: '100%',
+				width: `${width}%`,
+				left: `${left}%`,
 			}}>
 			{eventId}
 		</div>
