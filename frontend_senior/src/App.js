@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 /*  mock data  */
 import inpuData from './data/input.json'
 
+/* helpers  */
+import ElementCoordinates from './services/ElementCoordinatesModel'
+
 /*  components  */
 import EventContainer from './components/EventContainer'
 import HourContainer from './components/HourContainer'
@@ -46,12 +49,17 @@ function App() {
 	useEffect(() => {
 		// const boundingRect = elementRef.current.getBoundingClientRect()
 		// console.log(boundingRect)
+		const eventsDomArray = document.querySelectorAll('[data-event]')
+		eventsDomArray.forEach((elem) => {
+			const domElem = new ElementCoordinates(elem)
+			console.log(domElem.bounderies)
+		})
 	}, [])
 
 	return (
 		<div className="container">
 			{renderHours()} {renderEvents()}
-			<div data>Element to access</div>
+			<div data-animal>Element to access</div>
 		</div>
 	)
 }

@@ -13,6 +13,7 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 	return (
 		<div
 			className={styles.eventContainer}
+			data-event
 			style={{ top: `${porcetangeFromTop}%`, height: `${endTime}%` }}>
 			{eventId}
 		</div>
