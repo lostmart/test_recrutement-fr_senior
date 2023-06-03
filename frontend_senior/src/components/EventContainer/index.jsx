@@ -5,12 +5,9 @@ import styles from './index.module.scss'
 import MinutesFormat from '../../services/MinutesModel'
 import placeCalculator from '../../services/PlaceCalculator'
 
-const EventContainer = ({ eventId, startTime, duration }) => {
-	const startingTime = new MinutesFormat(startTime)
-	// console.log(startingTime)
-	const porcetangeFromTop = placeCalculator(startingTime.totalMinutes)
+const EventContainer = ({ eventId, duration, timeInMinutes }) => {
+	const porcetangeFromTop = placeCalculator(timeInMinutes.totalMinutes)
 	const endTime = placeCalculator(duration)
-	// console.log(endTime)
 	return (
 		<div
 			className={styles.eventContainer}
@@ -28,9 +25,10 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 EventContainer.propTypes = {
 	/**
 	 * Returns a React element that accepts 3 props
-	 * @param {number} eventId - The ID of the event.
-	 * @param {string} startTime - The start time of the event.
-	 * @param {number} duration - The duration of the event.
+	 * @param {number} eventId - The ID of the event
+	 * @param {number} duration - The duration of the event
+	 * @param {object} timeInMinutes - instance of MinutesFormat
+	 * @see MinutesFormat {@link https://github.com/lostmart/test_recrutement-fr_senior/blob/master/Readme.md}
 	 * @returns {JSX.Element} The React element representing the event.
 	 */
 	eventId: PropTypes.number,

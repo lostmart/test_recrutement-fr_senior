@@ -52,8 +52,8 @@ const renderEvents = () => {
 			<EventContainer
 				key={event.id}
 				eventId={event.id}
-				startTime={event.start}
 				duration={event.duration}
+				timeInMinutes={event.timeInMinutes}
 			/>
 		)
 	})
