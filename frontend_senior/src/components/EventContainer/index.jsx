@@ -7,6 +7,7 @@ import placeCalculator from '../../services/PlaceCalculator'
 
 const EventContainer = ({ eventId, startTime, duration }) => {
 	const startingTime = new MinutesFormat(startTime)
+	// console.log(startingTime)
 	const porcetangeFromTop = placeCalculator(startingTime.totalMinutes)
 	const endTime = placeCalculator(duration)
 	// console.log(endTime)
@@ -17,7 +18,7 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 			style={{
 				top: `${porcetangeFromTop}%`,
 				height: `${endTime}%`,
-				width: '50%',
+				width: '100%',
 			}}>
 			{eventId}
 		</div>

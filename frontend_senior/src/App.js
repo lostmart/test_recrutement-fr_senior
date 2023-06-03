@@ -4,6 +4,9 @@ import { useEffect } from 'react'
 import inpuData from './data/input.json'
 
 /* helpers  */
+import minutesFormat from './services/MinutesModel'
+
+import orderCronologically from './services/OrderCronollogically'
 import ElementCoordinates from './services/ElementCoordinatesModel'
 import detectCollission from './services/DetectCollission'
 
@@ -11,6 +14,13 @@ import detectCollission from './services/DetectCollission'
 import EventContainer from './components/EventContainer'
 import HourContainer from './components/HourContainer'
 
+const formated = inpuData.map((event) => {
+	const formatedTime = new minutesFormat(event.start)
+	return formatedTime.totalMinutes
+})
+console.log(formated)
+
+// console.log(ordered)
 const renderHours = () => {
 	/** Return an array of elements to stack in the container
 	 * each element corresponds an hour
@@ -50,7 +60,7 @@ function App() {
 		const eventsDomArray = document.querySelectorAll('[data-event]')
 		eventsDomArray.forEach((elem) => {
 			const domElem = new ElementCoordinates(elem)
-			console.log(detectCollission(domElem.bounderies))
+			// console.log(detectCollission(domElem.bounderies))
 		})
 	}, [])
 
