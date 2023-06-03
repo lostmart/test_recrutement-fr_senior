@@ -3,7 +3,7 @@ class minutesFormat {
 	 * @param {string} time -  Starting time of each event
 	 */
 	constructor(time) {
-		this.time = time
+		this.time = time ?? null
 	}
 
 	/**

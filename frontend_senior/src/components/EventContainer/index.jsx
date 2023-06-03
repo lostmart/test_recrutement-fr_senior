@@ -5,15 +5,15 @@ import styles from './index.module.scss'
 import MinutesFormat from '../../services/MinutesModel'
 import placeCalculator from '../../services/PlaceCalculator'
 
-const EventContainer = ({ eventId, startTime }) => {
+const EventContainer = ({ eventId, startTime, duration }) => {
 	const startingTime = new MinutesFormat(startTime)
-	// console.log(startingTime.totalMinutes)
 	const porcetangeFromTop = placeCalculator(startingTime.totalMinutes)
-	console.log(porcetangeFromTop)
+	const endTime = placeCalculator(duration)
+	console.log(endTime)
 	return (
 		<div
 			className={styles.eventContainer}
-			style={{ top: `${porcetangeFromTop}%` }}>
+			style={{ top: `${porcetangeFromTop}%`, height: `${endTime}%` }}>
 			{eventId}
 		</div>
 	)
@@ -24,10 +24,12 @@ EventContainer.propTypes = {
 	 *Returns the sum of a and b
 	 * @param {number} eventId
 	 * @param {string} startTime
+	 * @param {number} duration
 	 * @returns {JSX.Element}
 	 */
 	eventId: PropTypes.number,
-	topPosition: PropTypes.number,
+	startTime: PropTypes.string,
+	duration: PropTypes.number,
 }
 
 export default EventContainer

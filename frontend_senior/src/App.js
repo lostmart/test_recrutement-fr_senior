@@ -21,12 +21,14 @@ const rednerHours = () => {
 }
 
 const renderEvents = () => {
+	// console.log(inpuData[0].duration)
 	return inpuData.map((event) => {
 		return (
 			<EventContainer
 				key={event.id}
 				eventId={event.id}
 				startTime={event.start}
+				duration={event.duration}
 			/>
 		)
 	})
