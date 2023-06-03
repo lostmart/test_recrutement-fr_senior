@@ -1,4 +1,4 @@
-class minutesFormat {
+class MinutesFormat {
 	/**
 	 * @constructor
 	 * @param {string} time -  Starting time of each event
@@ -36,4 +36,4 @@ class minutesFormat {
 	}
 }
 
-export default minutesFormat
+export default MinutesFormat

@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import inpuData from './data/input.json'
 
 /* helpers  */
+import EvenModel from './services/EventModel'
 import minutesFormat from './services/MinutesModel'
 
 import orderCronologically from './services/OrderCronollogically'
@@ -14,13 +15,21 @@ import detectCollission from './services/DetectCollission'
 import EventContainer from './components/EventContainer'
 import HourContainer from './components/HourContainer'
 
-const formated = inpuData.map((event) => {
-	const formatedTime = new minutesFormat(event.start)
-	return formatedTime.totalMinutes
-})
-console.log(formated)
+const formatData = (event) => {
+	/**
+	 * Creates a new EventModel
+	 * @class
+	 */
+	const newEvent = new EvenModel(event)
+	return newEvent
+}
 
-// console.log(ordered)
+const formattedData = inpuData.map(formatData)
+
+const orderedEvents = orderCronologically(formattedData)
+
+// console.log(orderedEvents)
+
 const renderHours = () => {
 	/** Return an array of elements to stack in the container
 	 * each element corresponds an hour
@@ -38,7 +47,7 @@ const renderEvents = () => {
 	/** Renders the ammped array af all the given events
 	 * @returns {array} - array of elements containing all the event's data
 	 */
-	return inpuData.map((event) => {
+	return orderedEvents.map((event) => {
 		return (
 			<EventContainer
 				key={event.id}
@@ -67,7 +76,6 @@ function App() {
 	return (
 		<div className="container">
 			{renderHours()} {renderEvents()}
-			<div data-animal>Element to access</div>
 		</div>
 	)
 }

@@ -8,13 +8,14 @@ function orderCronologically(events) {
 		/**
 		 * @param {object} - each event from the input array
 		 */
-		const timeA = a.start
-		const timeB = b.start
+		const timeA = a.timeInMinutes.totalMinutes
+		const timeB = b.timeInMinutes.totalMinutes
 		return timeA - timeB
 	}
 
 	const orderedEvents = events.sort(sortByTimeStart)
 
+	console.log(orderedEvents)
 	return orderedEvents
 }
 
