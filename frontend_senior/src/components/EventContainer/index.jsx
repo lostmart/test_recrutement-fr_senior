@@ -9,7 +9,7 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 	const startingTime = new MinutesFormat(startTime)
 	const porcetangeFromTop = placeCalculator(startingTime.totalMinutes)
 	const endTime = placeCalculator(duration)
-	console.log(endTime)
+	// console.log(endTime)
 	return (
 		<div
 			className={styles.eventContainer}
