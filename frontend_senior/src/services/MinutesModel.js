@@ -1,5 +1,6 @@
 class minutesFormat {
 	/**
+	 * @constructor
 	 * @param {string} time -  Starting time of each event
 	 */
 	constructor(time) {

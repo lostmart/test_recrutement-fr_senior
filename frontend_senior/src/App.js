@@ -5,6 +5,7 @@ import inpuData from './data/input.json'
 
 /* helpers  */
 import ElementCoordinates from './services/ElementCoordinatesModel'
+import detectCollission from './services/DetectCollission'
 
 /*  components  */
 import EventContainer from './components/EventContainer'
@@ -44,15 +45,12 @@ function App() {
 	 * @returns {JSX.Element} - renders a div element with the "container" class and calls
 	 * two render functions renderHours() & renderEvents()
 	 */
-	// const elementRef = useRef()
 
 	useEffect(() => {
-		// const boundingRect = elementRef.current.getBoundingClientRect()
-		// console.log(boundingRect)
 		const eventsDomArray = document.querySelectorAll('[data-event]')
 		eventsDomArray.forEach((elem) => {
 			const domElem = new ElementCoordinates(elem)
-			console.log(domElem.bounderies)
+			console.log(detectCollission(domElem.bounderies))
 		})
 	}, [])
 

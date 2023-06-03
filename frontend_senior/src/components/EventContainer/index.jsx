@@ -14,7 +14,11 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 		<div
 			className={styles.eventContainer}
 			data-event
-			style={{ top: `${porcetangeFromTop}%`, height: `${endTime}%` }}>
+			style={{
+				top: `${porcetangeFromTop}%`,
+				height: `${endTime}%`,
+				width: '50%',
+			}}>
 			{eventId}
 		</div>
 	)
