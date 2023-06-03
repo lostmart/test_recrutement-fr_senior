@@ -21,11 +21,11 @@ const EventContainer = ({ eventId, startTime, duration }) => {
 
 EventContainer.propTypes = {
 	/**
-	 *Returns the sum of a and b
-	 * @param {number} eventId
-	 * @param {string} startTime
-	 * @param {number} duration
-	 * @returns {JSX.Element}
+	 * Returns a React element that accepts 3 props
+	 * @param {number} eventId - The ID of the event.
+	 * @param {string} startTime - The start time of the event.
+	 * @param {number} duration - The duration of the event.
+	 * @returns {JSX.Element} The React element representing the event.
 	 */
 	eventId: PropTypes.number,
 	startTime: PropTypes.string,
