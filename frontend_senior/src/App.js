@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 /*  mock data  */
 import inpuData from './data/input.json'
 
@@ -5,7 +7,7 @@ import inpuData from './data/input.json'
 import EventContainer from './components/EventContainer'
 import HourContainer from './components/HourContainer'
 
-const rednerHours = () => {
+const renderHours = () => {
 	/** Return an array of elements to stack in the container
 	 * each element corresponds an hour
 	 * @returns {JSX.Element}
@@ -19,7 +21,9 @@ const rednerHours = () => {
 }
 
 const renderEvents = () => {
-	// console.log(inpuData[0].duration)
+	/** Renders the ammped array af all the given events
+	 * @returns {array} - array of elements containing all the event's data
+	 */
 	return inpuData.map((event) => {
 		return (
 			<EventContainer
@@ -33,9 +37,21 @@ const renderEvents = () => {
 }
 
 function App() {
+	/**
+	 * @returns {JSX.Element} - renders a div element with the "container" class and calls
+	 * two render functions renderHours() & renderEvents()
+	 */
+	// const elementRef = useRef()
+
+	useEffect(() => {
+		// const boundingRect = elementRef.current.getBoundingClientRect()
+		// console.log(boundingRect)
+	}, [])
+
 	return (
 		<div className="container">
-			{rednerHours()} {renderEvents()}
+			{renderHours()} {renderEvents()}
+			<div data>Element to access</div>
 		</div>
 	)
 }
