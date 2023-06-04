@@ -28,9 +28,12 @@ const detectOverlaping = (events) => {
 			const previousEndPeriod = previousZeroBasedTime + previousEvent.duration
 
 			if (currentEndPeriod > nextZeroBasedTime) {
-				currentEvent.width = 100 / ratioDivision
+				currentEvent.width = 100 / ratioDivision - 0.2
 				if (currentZeroBasedTime < previousEndPeriod) {
-					currentEvent.left = 50.1
+					currentEvent.left = 100 / ratioDivision
+				}
+				if (nextZeroBasedTime < currentEndPeriod) {
+					nextEvent.width = 5
 				}
 			}
 		}
