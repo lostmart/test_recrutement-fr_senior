@@ -3,35 +3,40 @@ const detectOverlaping = (events) => {
 	 * @param {array} events -
 	 */
 
-	const callBack = (event) => {
-		/**
-		 *
-		 */
-	}
-
 	// events.map(callBack)
-	for (let i = 0; i < events.length - 1; i++) {
+
+	let i = 0
+	let ratioDivision = 2
+	while (i < events.length - 1) {
 		const currentEvent = events[i]
 		const currentZeroBasedTime = currentEvent.timeInMinutes.totalMinutes
+		const currentEndPeriod = currentZeroBasedTime + currentEvent.duration
 
 		const nextEvent = events[i + 1]
 		const nextZeroBasedTime = nextEvent.timeInMinutes.totalMinutes
+		const nextEndPeriod = nextZeroBasedTime + nextEvent.duration
 
-		if (currentZeroBasedTime === nextZeroBasedTime) {
-			currentEvent.width = 50
+		console.log('current: ', currentZeroBasedTime, currentEndPeriod)
+		console.log('next: ', nextZeroBasedTime, nextEndPeriod)
+		/* affect the current   */
+		if (currentEndPeriod < nextZeroBasedTime) {
+			currentEvent.width = 100
 		}
 		if (i > 0) {
 			const previousEvent = events[i - 1]
 			const previousZeroBasedTime = previousEvent.timeInMinutes.totalMinutes
-			if (previousZeroBasedTime === currentZeroBasedTime) {
-				currentEvent.width = 50
-				currentEvent.left = 50
+			const previousEndPeriod = previousZeroBasedTime + previousEvent.duration
+
+			if (currentEndPeriod > nextZeroBasedTime) {
+				currentEvent.width = 100 / ratioDivision
+				if (currentZeroBasedTime < previousEndPeriod) {
+					currentEvent.left = 50.1
+				}
 			}
 		}
-		// console.log(currentZeroBasedTime, nextZeroBasedTime)
-		// console.log(nextEvent)
+		i++
 	}
-	console.log(events)
+	// console.log(events)
 	return events
 }
 
