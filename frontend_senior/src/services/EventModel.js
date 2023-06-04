@@ -43,13 +43,21 @@ class EventModel {
 		 * @see detectOverlaping
 		 * @type {number}
 		 */
-		this.width = 100
+		this.width = 99.8
 		/**
 		 * The width of the event (can be set later)
 		 * @see detectOverlaping
 		 * @type {number}
 		 */
-		this.left = 0
+		this.left = 0.1
+	}
+
+	get zeroBasedTimeInMinutes() {
+		return this.timeInMinutes.totalMinutes
+	}
+
+	get finishingTimeInMinutes() {
+		return this.timeInMinutes.totalMinutes + this.duration
 	}
 }
 

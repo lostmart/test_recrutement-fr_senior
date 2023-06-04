@@ -6,106 +6,50 @@ const detectOverlaping = (events) => {
 	/*    */
 	let eventsPerRow = []
 	let next = false
-	let rendered = false
 
-	/*  check overlaps in current endTime and next startinTime   */
-	const endAndStart = (currentFinishTime, nextStartTime) => {
+	/**
+	 * Determines if the current finish time is greater than or equal to the next start time.
+	 * @param {number} currentFinishTime - The finish time of the current event.
+	 * @param {number} nextStartTime - The start time of the next event.
+	 * @returns  {boolean} -  Returns true if the current finish time is greater than or equal to the next start time, otherwise returns false.
+	 */
+
+	const currentEndNextStart = (currentFinishTime, nextStartTime) => {
 		if (currentFinishTime >= nextStartTime) return true
 		else return false
 	}
 
-	// const callBack = (event, indx) => {
-	// 	// for (let i = 0; i < events.length - 1; i++) {
-	// 	// 	/* current event  */
-	// 	// 	const currentEvent = events[i]
-	// 	// 	const currentZeroBasedTime = currentEvent.timeInMinutes.totalMinutes
-	// 	// 	const currentEndPeriod = currentZeroBasedTime + currentEvent.duration
-
-	// 	// 	/*  next event   */
-	// 	// 	const nextEvent = events[i + 1]
-	// 	// 	const nextZeroBasedTime = nextEvent.timeInMinutes.totalMinutes
-	// 	// 	const nextEndPeriod = nextZeroBasedTime + nextEvent.duration
-
-	// 	// 	// console.log(
-	// 	// 	// 	'current: ',
-	// 	// 	// 	currentZeroBasedTime,
-	// 	// 	// 	currentEndPeriod,
-	// 	// 	// 	currentEvent.id
-	// 	// 	// )
-	// 	// 	// console.log('next: ', nextZeroBasedTime, nextEndPeriod, nextEvent.id)
-
-	// 	// 	/* detect first pass  */
-	// 	// 	// if (i === 0) {
-	// 	// 	// 	console.log('first pass !')
-	// 	// 	// }
-
-	// 	// 	/* detect end of current event and start of next one */
-	// 	// 	// if (currentEndPeriod >= nextZeroBasedTime) {
-	// 	// 	// 	eventsPerRow.push(currentEvent)
-	// 	// 	// } else {
-	// 	// 	// 	eventsPerRow = []
-	// 	// 	// }
-	// 	// }
-
-	// 	const currentEvent = event
-	// 	const currentZeroBasedTime = currentEvent.timeInMinutes.totalMinutes
-	// 	const currentEndPeriod = currentZeroBasedTime + currentEvent.duration
-
-	// 	/* runs on first event only   */
-	// 	if (indx === 0) {
-	// 		/*  next event   */
-	// 		const nextEvent = events[indx + 1]
-	// 		const nextZeroBasedTime = nextEvent.timeInMinutes.totalMinutes
-
-	// 		if (endAndStart(currentEndPeriod, nextZeroBasedTime))
-	// 			eventsPerRow.push(currentEvent)
-	// 	} else {
-	// 		/*  run after the first pass  */
-	// 		if (endAndStart(currentEndPeriod, nextZeroBasedTime)) {
-	// 			console.log('increible !!')
-	// 		}
-	// 	}
-
-	// 	/*  TEST NEXT EVENT   */
-	// 	console.log(eventsPerRow, 'next loop !')
-	// 	return event
-	// }
-
 	for (let i = 0; i < events.length - 1; i++) {
 		/* current event  */
 		const currentEvent = events[i]
-		const currentZeroBasedTime = currentEvent.timeInMinutes.totalMinutes
-		const currentEndPeriod = currentZeroBasedTime + currentEvent.duration
 
 		/*  next event   */
 		const nextEvent = events[i + 1]
-		const nextZeroBasedTime = nextEvent.timeInMinutes.totalMinutes
-		const nextEndPeriod = nextZeroBasedTime + nextEvent.duration
-
-		// console.log(
-		// 	'current: ',
-		// 	currentZeroBasedTime,
-		// 	currentEndPeriod,
-		// 	currentEvent.id
-		// )
-		// console.log('next: ', nextZeroBasedTime, nextEndPeriod, nextEvent.id)
+		const nextZeroBasedTime = nextEvent.finishingTimeInMinutes
+		const nextEndPeriod = nextEvent.zeroBasedTimeInMinutes
 
 		/* detect first pass  */
 		if (i === 0) {
-			const startOverlap = endAndStart(currentEndPeriod, nextZeroBasedTime)
+			const startOverlap = currentEndNextStart(
+				currentEvent.zeroBasedTimeInMinutes,
+				nextZeroBasedTime
+			)
 			if (startOverlap) eventsPerRow.push(currentEvent)
 			else next = true
 		} else {
-			/*  previous event   */
+			/*  check overlap with previous event   */
 			const previousEvent = events[i - 1]
-			console.log(previousEvent.timeInMinutes)
+			// const previousZeroBasedTime = previousEvent.timeInMinutes
 
 			/* all the other passes   */
-			const startOverlap = endAndStart(currentEndPeriod, nextZeroBasedTime)
+			const startOverlap = currentEndNextStart(
+				currentEvent.finishingTimeInMinutes,
+				currentEvent.zeroBasedTimeInMinutes
+			)
 
 			/*  check next event   */
 			if (
-				currentZeroBasedTime <
+				currentEvent.zeroBasedTimeInMinutes <
 					previousEvent.timeInMinutes.totalMinutes + previousEvent.duration ||
 				startOverlap
 			) {
@@ -123,33 +67,33 @@ const detectOverlaping = (events) => {
 			next = true
 		}
 
-		/* detect end of current event and start of next one */
-		// if (currentEndPeriod >= nextZeroBasedTime) {
-		// 	eventsPerRow.push(currentEvent)
-		// } else {
-		// 	eventsPerRow = []
-		// }
+		/**
+		 * Adjusts the width and left position of events in a row if there are events present and a next event is available.
+		 *
+		 * @param {Array} eventsPerRow - An array of events in the current row.
+		 * @param {boolean} next - Indicates if there is a next event available.
+		 */
+		const adjustEventsInRow = (eventsPerRow, next) => {
+			if (eventsPerRow.length > 0 && next) {
+				const eventCount = eventsPerRow.length
+				const eventWidth = 99.8 / eventCount
 
-		// 	/*  TEST NEXT EVENT   */
-		/*   modify widths and left positions         */
-		if (eventsPerRow.length > 0 && next === true) {
-			eventsPerRow.forEach((event, indx) => {
-				event.width = 99.8 / eventsPerRow.length
-				if (indx > 0) {
-					event.left = (99.8 / eventsPerRow.length) * indx
-				}
-			})
-			next = false
-			rendered = true
+				eventsPerRow.forEach((event, indx) => {
+					event.width = eventWidth
+					if (indx > 0) {
+						event.left = eventWidth * indx
+					}
+				})
+
+				next = false
+			}
 			eventsPerRow = []
 		}
 
-		// if (rendered && !next) {
-		// 	eventsPerRow = []
-		// }
-
-		console.log(eventsPerRow, 'current: ', currentEvent.id)
+		adjustEventsInRow(eventsPerRow, next)
 	}
+
+	console.log(eventsPerRow)
 
 	return events
 }
