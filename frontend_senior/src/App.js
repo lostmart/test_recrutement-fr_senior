@@ -1,5 +1,6 @@
 /*  mock data  */
 import inpuData from './data/input.json'
+//import inpuData from './data/input-2.json'
 
 /* helpers  */
 import EventModel from './services/EventModel'
