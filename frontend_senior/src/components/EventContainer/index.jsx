@@ -4,20 +4,27 @@ import styles from './index.module.scss'
 /*  helpers  */
 import placeCalculator from '../../services/PlaceCalculator'
 
-const EventContainer = ({ eventId, duration, timeInMinutes, width, left }) => {
-	const porcetangeFromTop = placeCalculator(timeInMinutes.totalMinutes)
-	const endTime = placeCalculator(duration)
+const EventContainer = ({ eventDetails }) => {
+	const showDetails = () => {
+		console.log(eventDetails)
+	}
+
+	const porcetangeFromTop = placeCalculator(
+		eventDetails.timeInMinutes.totalMinutes
+	)
+	const endTime = placeCalculator(eventDetails.duration)
 	return (
 		<div
+			onClick={showDetails}
 			className={styles.eventContainer}
 			data-event
 			style={{
 				top: `${porcetangeFromTop}%`,
 				height: `${endTime}%`,
-				width: `${width}%`,
-				left: `${left}%`,
+				width: `${eventDetails.width}%`,
+				left: `${eventDetails.left}%`,
 			}}>
-			{eventId}
+			{eventDetails.id}
 		</div>
 	)
 }
@@ -25,9 +32,9 @@ const EventContainer = ({ eventId, duration, timeInMinutes, width, left }) => {
 EventContainer.propTypes = {
 	/**
 	 * Returns a React element that accepts 3 props
-	 * @param {number} eventId - The ID of the event
-	 * @param {number} duration - The duration of the event
-	 * @param {object} timeInMinutes - instance of MinutesFormat
+	 * @param {object} eventDetails - The ID of the event
+	 * {number} duration - The duration of the event
+	 * {object} timeInMinutes - instance of MinutesFormat
 	 * @see MinutesFormat {@link https://github.com/lostmart/test_recrutement-fr_senior/blob/master/Readme.md}
 	 * @returns {JSX.Element} The React element representing the event.
 	 */

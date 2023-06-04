@@ -49,11 +49,12 @@ const renderEvents = () => {
 		return (
 			<EventContainer
 				key={event.id}
-				eventId={event.id}
-				duration={event.duration}
-				timeInMinutes={event.timeInMinutes}
-				width={event.width}
-				left={event.left}
+				// eventId={event.id}
+				// duration={event.duration}
+				// timeInMinutes={event.timeInMinutes}
+				// width={event.width}
+				// left={event.left}
+				eventDetails={event}
 			/>
 		)
 	})

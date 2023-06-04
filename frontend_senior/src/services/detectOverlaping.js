@@ -98,7 +98,7 @@ const detectOverlaping = (events) => {
 		} else {
 			/*  previous event   */
 			const previousEvent = events[i - 1]
-			// console.log(previousEvent)
+			console.log(previousEvent.timeInMinutes)
 
 			/* all the other passes   */
 			const startOverlap = endAndStart(currentEndPeriod, nextZeroBasedTime)
