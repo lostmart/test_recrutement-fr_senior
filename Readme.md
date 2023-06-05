@@ -56,7 +56,7 @@ The most pertinent dependencies are:
 
 inside the ```src``` folder you'll find:
 
-.
+``` 
     ├── components                   # Compiled files (alternatively `dist`)
     ├── docs                    # Documentation files (alternatively `doc`)
     ├── src                     # Source files (alternatively `lib` or `app`)
@@ -64,3 +64,4 @@ inside the ```src``` folder you'll find:
     ├── tools                   # Tools and utilities
     ├── LICENSE
     └── README.md
+```
