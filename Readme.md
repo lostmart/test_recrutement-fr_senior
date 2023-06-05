@@ -50,4 +50,17 @@ The most pertinent dependencies are:
 		"react-dom": "^18.2.0",
 		"react-scripts": "5.0.1",
 ```
+## [🔝](#table-of-contents)
 
+## Repository Structure:
+
+inside the ```src``` folder you'll find:
+
+.
+    ├── components                   # Compiled files (alternatively `dist`)
+    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── tools                   # Tools and utilities
+    ├── LICENSE
+    └── README.md
