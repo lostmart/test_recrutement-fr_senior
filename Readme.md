@@ -57,11 +57,14 @@ The most pertinent dependencies are:
 inside the ```src``` folder you'll find:
 
 ``` 
-    ├── components                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
-    └── README.md
+    ├── components              # (EventConotainer & HourContainer)
+    ├── data                    # Mock data file
+    ├── services                # Dirrerent helper functions
+    ├── Styles                  # scss files
+         ├── abstracts          # ( _colors.scss & _variables.scss )
+         ├── base               # ( _reset.scss & _typography.scss )
+         ├── layout             # ( _container.scss & _hourContainer.scss )
+    ├── Usage.md                # Documentation that complements docsJs
+    └── App.js
+    └── index.js
 ```
