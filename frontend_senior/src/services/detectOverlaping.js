@@ -8,6 +8,11 @@ const detectOverlaping = (events) => {
 
 	/*  FUNCTIONS  */
 
+	/**
+	 * @param {Array<Array>} arr - An array of arrays to merge.
+	 *	@returns {Array<Array>} - The merged array.
+	 * @returns
+	 */
 	const mergeArrays = (arr) => {
 		const merged = []
 
@@ -58,18 +63,8 @@ const detectOverlaping = (events) => {
 	for (let i = 0; i < events.length - 1; i++) {
 		/* current event  */
 		const currentEvent = events[i]
-		// console.table({
-		// 	'event ID': currentEvent.id,
-		// 	'event index': i,
-		// 	'event starting time': currentEvent.zeroBasedTimeInMinutes,
-		// 	'check event': events[i].id + 1,
-		// })
 		for (let indx = i + 1; indx < events.length; indx++) {
 			const followingEvent = events[indx]
-			// console.table({
-			// 	'event ID': currentEvent.id,
-			// 	'check event': followingEvent.id,
-			// })
 			if (
 				currentEvent.finishingTimeInMinutes >=
 				followingEvent.zeroBasedTimeInMinutes
@@ -79,13 +74,9 @@ const detectOverlaping = (events) => {
 			} else {
 				const newArr = [currentEvent]
 				eventsPerRow.push(newArr)
-				// console.log(newArr)
 			}
-			/* last event is not being included in the else part !!  */
 		}
 	}
-
-	// console.log(mergeArrays(eventsPerRow))
 
 	adjustEventsInRow(mergeArrays(eventsPerRow))
 
