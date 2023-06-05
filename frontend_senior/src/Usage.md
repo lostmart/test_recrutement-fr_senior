@@ -24,3 +24,9 @@ The most pertinent dependencies are:
 		"react-dom": "^18.2.0",
 		"react-scripts": "5.0.1",
 ```
+
+### 3. Run ``` npm start ``` on your terminal
+
+---
+
+### EventModel
