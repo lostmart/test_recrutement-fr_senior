@@ -3,54 +3,106 @@ const detectOverlaping = (events) => {
 	 * @param {array} events -
 	 */
 
-	// events.map(callBack)
+	/* GLOBAL VARIABLES  */
+	let eventsPerRow = [] // determine the umber of events that will share the same row
+	let next = false // determine if we can start evaluation the following event
+	let innerIndx = 0 // index to call recursive fn
 
-	let i = 0
-	let ratioDivision = 2
-	while (i < events.length - 1) {
-		const currentEvent = events[i]
-		const currentZeroBasedTime = currentEvent.timeInMinutes.totalMinutes
-		const currentEndPeriod = currentZeroBasedTime + currentEvent.duration
+	/*  FUNCTIONS  */
 
-		const nextEvent = events[i + 1]
-		const nextZeroBasedTime = nextEvent.timeInMinutes.totalMinutes
-		const nextEndPeriod = nextZeroBasedTime + nextEvent.duration
-
-		console.log(
-			'current: ',
-			currentZeroBasedTime,
-			currentEndPeriod,
-			currentEvent.id
-		)
-		console.log('next: ', nextZeroBasedTime, nextEndPeriod, nextEvent.id)
-
-		/* first event: check if the next event start before current finishes  */
-		if (currentEndPeriod < nextZeroBasedTime && i === 0) {
-			currentEvent.width = 100
-		}
-		/*  we've reached the second event    */
-		if (i > 0) {
-			const previousEvent = events[i - 1]
-			const previousZeroBasedTime = previousEvent.timeInMinutes.totalMinutes
-			const previousEndPeriod = previousZeroBasedTime + previousEvent.duration
-
-			/* if current event ends before next one starts   */
-			if (currentEndPeriod > nextZeroBasedTime) {
-				currentEvent.width = 100 / ratioDivision - 0.2
-				/* if current event starts before the previous one ends move it to the left   */
-				if (currentZeroBasedTime < previousEndPeriod) {
-					currentEvent.left = 100 / ratioDivision
+	/* function that calls itself  */
+	const recursiveCheck = (currentEvent) => {
+		/*  exit condition  */
+		if (innerIndx >= events.length) {
+			innerIndx = 0
+			return true
+		} else {
+			if (currentEvent.id != events[innerIndx].id) {
+				console.log('run check', currentEvent.id, events[innerIndx].id)
+				if (
+					currentEvent.zeroBasedTimeInMinutes ===
+					events[innerIndx].zeroBasedTimeInMinutes
+				) {
+					eventsPerRow.push(currentEvent)
+					console.log(currentEvent)
 				}
-				/*  if next event starts before current event finishes  */
-				if (currentEndPeriod > nextZeroBasedTime) {
-					nextEvent.width = 100 / ratioDivision - 0.2
-				}
+			} else {
+				console.log('el mismo')
 			}
+
+			innerIndx++
+			recursiveCheck(currentEvent)
 		}
-		console.log('start new loop')
-		i++
 	}
-	// console.log(events)
+
+	/*  same starting time  */
+	const sameStartingTime = (currentEvent, nextEvent) => {
+		if (
+			currentEvent.zeroBasedTimeInMinutes ===
+				nextEvent.zeroBasedTimeInMinutes &&
+			currentEvent.id != nextEvent.id
+		) {
+			return true
+		}
+	}
+
+	/**
+	 * Adjusts the width and left position of events in a row if there are events present and a next event is available.
+	 *
+	 * @param {Array} eventsPerRow - An array of events in the current row.
+	 * @param {boolean} next - Indicates if there is a next event available.
+	 */
+	const adjustEventsInRow = (eventsPerRow, next) => {
+		console.log(eventsPerRow)
+		if (eventsPerRow.length > 0 && next) {
+			const eventCount = eventsPerRow.length
+			const eventWidth = 99.8 / eventCount
+
+			/*  check ! ⚠️   */
+			eventsPerRow.forEach((event, indx) => {
+				event.width = eventWidth
+				// if (indx > 0) {
+				// 	event.left = 100 / 3
+				// }
+			})
+		}
+		eventsPerRow = []
+	}
+
+	for (let i = 0; i < events.length - 1; i++) {
+		/* current event  */
+		const currentEvent = events[i]
+
+		/*  next event   */
+		// const nextEvent = events[i + 1]
+		// const nextZeroBasedTime = nextEvent.zeroBasedTimeInMinutes
+		// const nextEndPeriod = nextEvent.zeroBasedTimeInMinutes
+
+		/*  EVALUATE OVERLAP FOR EACH EVENT   */
+		/* detect first pass  */
+		if (i === 0) {
+			const startOverlap = recursiveCheck(currentEvent)
+			if (startOverlap) eventsPerRow.push(currentEvent)
+			else next = true
+		} else {
+			/* all the other passes   */
+			recursiveCheck(currentEvent)
+		}
+		console.log('outside! ', eventsPerRow, next)
+
+		/* END OF EVALUATE OVERLAP FOR EACH EVENT   */
+
+		/*  detectar ultimo pase  */
+
+		// if (i >= events.length - 2) {
+		// 	next = true
+		// }
+
+		adjustEventsInRow(eventsPerRow, next)
+
+		// console.log(eventsPerRow, 'current : ', currentEvent.id)
+	}
+
 	return events
 }
 

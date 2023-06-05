@@ -3,97 +3,87 @@ const detectOverlaping = (events) => {
 	 * @param {array} events -
 	 */
 
-	/*    */
-	let eventsPerRow = []
-	let next = false
+	/* GLOBAL VARIABLES  */
+	let eventsPerRow = [] // determine the umber of events that will share the same row
 
-	/**
-	 * Determines if the current finish time is greater than or equal to the next start time.
-	 * @param {number} currentFinishTime - The finish time of the current event.
-	 * @param {number} nextStartTime - The start time of the next event.
-	 * @returns  {boolean} -  Returns true if the current finish time is greater than or equal to the next start time, otherwise returns false.
-	 */
+	/*  FUNCTIONS  */
 
-	const currentEndNextStart = (currentFinishTime, nextStartTime) => {
-		if (currentFinishTime >= nextStartTime) return true
-		else return false
+	const mergeArrays = (arr) => {
+		const merged = []
+
+		// Iterate through each array in the input
+		for (let i = 0; i < arr.length; i++) {
+			let currentArray = arr[i]
+			let found = false
+
+			// Check if the current array already exists in the merged array
+			for (let j = 0; j < merged.length; j++) {
+				if (currentArray.some((val) => merged[j].includes(val))) {
+					// Merge the arrays if there are common values
+					merged[j] = Array.from(new Set([...merged[j], ...currentArray]))
+					found = true
+					break
+				}
+			}
+
+			// If the current array doesn't exist in the merged array, add it as a new array
+			if (!found) {
+				merged.push(currentArray)
+			}
+		}
+
+		return merged
+	}
+
+	const adjustEventsInRow = (eventsArray) => {
+		eventsArray.forEach((events) => {
+			if (events.length > 1) {
+				events.forEach((event, indx) => {
+					const eventCount = events.length
+
+					event.width = 99.3 / eventCount
+					if (indx > 0) {
+						event.left = (100 / events.length) * indx
+						console.log(indx)
+					}
+				})
+			}
+		})
 	}
 
 	for (let i = 0; i < events.length - 1; i++) {
 		/* current event  */
 		const currentEvent = events[i]
-
-		/*  next event   */
-		const nextEvent = events[i + 1]
-		const nextZeroBasedTime = nextEvent.finishingTimeInMinutes
-		const nextEndPeriod = nextEvent.zeroBasedTimeInMinutes
-
-		/* detect first pass  */
-		if (i === 0) {
-			const startOverlap = currentEndNextStart(
-				currentEvent.zeroBasedTimeInMinutes,
-				nextZeroBasedTime
-			)
-			if (startOverlap) eventsPerRow.push(currentEvent)
-			else next = true
-		} else {
-			/*  check overlap with previous event   */
-			const previousEvent = events[i - 1]
-			// const previousZeroBasedTime = previousEvent.timeInMinutes
-
-			/* all the other passes   */
-			const startOverlap = currentEndNextStart(
-				currentEvent.finishingTimeInMinutes,
-				currentEvent.zeroBasedTimeInMinutes
-			)
-
-			/*  check next event   */
+		// console.table({
+		// 	'event ID': currentEvent.id,
+		// 	'event index': i,
+		// 	'event starting time': currentEvent.zeroBasedTimeInMinutes,
+		// 	'check event': events[i].id + 1,
+		// })
+		for (let indx = i + 1; indx < events.length; indx++) {
+			const followingEvent = events[indx]
+			// console.table({
+			// 	'event ID': currentEvent.id,
+			// 	'check event': followingEvent.id,
+			// })
 			if (
-				currentEvent.zeroBasedTimeInMinutes <
-					previousEvent.timeInMinutes.totalMinutes + previousEvent.duration ||
-				startOverlap
+				currentEvent.finishingTimeInMinutes >=
+				followingEvent.zeroBasedTimeInMinutes
 			) {
-				eventsPerRow.push(currentEvent)
+				const newArr = [currentEvent, followingEvent]
+				eventsPerRow.push(newArr)
 			} else {
-				next = true
+				const newArr = [currentEvent]
+				eventsPerRow.push(newArr)
+				// console.log(newArr)
 			}
-
-			/*  check next event   */
+			/* last event is not being included in the else part !!  */
 		}
-
-		/*  detectar ultimo pase  */
-
-		if (i >= events.length - 2) {
-			next = true
-		}
-
-		/**
-		 * Adjusts the width and left position of events in a row if there are events present and a next event is available.
-		 *
-		 * @param {Array} eventsPerRow - An array of events in the current row.
-		 * @param {boolean} next - Indicates if there is a next event available.
-		 */
-		const adjustEventsInRow = (eventsPerRow, next) => {
-			if (eventsPerRow.length > 0 && next) {
-				const eventCount = eventsPerRow.length
-				const eventWidth = 99.8 / eventCount
-
-				eventsPerRow.forEach((event, indx) => {
-					event.width = eventWidth
-					if (indx > 0) {
-						event.left = eventWidth * indx
-					}
-				})
-
-				next = false
-			}
-			eventsPerRow = []
-		}
-
-		adjustEventsInRow(eventsPerRow, next)
 	}
 
-	console.log(eventsPerRow)
+	// console.log(mergeArrays(eventsPerRow))
+
+	adjustEventsInRow(mergeArrays(eventsPerRow))
 
 	return events
 }
