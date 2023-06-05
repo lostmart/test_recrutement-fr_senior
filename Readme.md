@@ -1,6 +1,6 @@
 ## Welcome to this Calendar app 👋
 
-![alt text](./frontend_senior/screenshot.jpg)
+![alt text](./frontend_senior/src/docs/screenshot.jpg)
 
 ## Table of Contents
 
@@ -9,6 +9,8 @@
 - #### [General Features](#features)
 
 - #### [Usage.md](./frontend_senior/src/Usage.md)
+
+- ### [App Flowchart](./frontend_senior/src/docs/app-diagram.jpeg)
 
 - #### [Online deploy](https://calendar-app-test.netlify.app/)
 

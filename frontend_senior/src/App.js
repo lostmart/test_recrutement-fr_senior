@@ -7,29 +7,27 @@ import orderCronologically from './services/OrderCronollogically'
 import detectOverlaping from './services/detectOverlaping'
 
 /*  components  */
-import EventContainer from './components/EventContainer'
-import HourContainer from './components/HourContainer'
+import HourContainer from './components/HourContainer' // background division / color
+import EventContainer from './components/EventContainer' // container for all the even data passed as prop
 
+/**
+ * Creates a new EventModel
+ * Format data by creating an instance of the EventModel class with the provided event data.
+ *  @param {Object} event - The event data to format.
+ *  @returns {EventModel} - The formatted event as an instance
+ */
 const formatData = (event) => {
-	/**
-	 * Creates a new EventModel
-	 * @class
-	 */
 	const newEvent = new EventModel(event)
 	return newEvent
 }
 
-const formattedData = inpuData.map(formatData)
-
-const orderedEvents = orderCronologically(formattedData)
-
-detectOverlaping(orderedEvents)
+/** Render the hour containers for a time range of 9 AM to 9 PM
+ * each element corresponds an hour
+ * @returns {Array<ReactElement>} - An array of React
+ * elements representing the hour containers.
+ */
 
 const renderHours = () => {
-	/** Return an array of elements to stack in the container
-	 * each element corresponds an hour
-	 * @returns {JSX.Element}
-	 */
 	const elements = []
 	for (let i = 0; i < 13; i++) {
 		elements.push(<HourContainer key={i} hour={i + 9} />)
@@ -38,24 +36,35 @@ const renderHours = () => {
 	return elements
 }
 
+/** Render event containers for the ordered events.
+ * @returns {Array<ReactElement>} - An array of React
+ * elements representing the event containers.
+ */
 const renderEvents = () => {
-	/** Renders the ammped array af all the given events
-	 * @returns {array} - array of elements containing all the event's data
-	 */
 	return orderedEvents.map((event) => {
 		return <EventContainer key={event.id} eventDetails={event} />
 	})
 }
 
+const formattedData = inpuData.map(formatData)
+
+const orderedEvents = orderCronologically(formattedData)
+
+detectOverlaping(orderedEvents)
+
+/**
+ * The main component of the application.
+ * @returns {JSX.Element} - The rendered JSX element
+ * representing the application.
+ */
+
 function App() {
-	/**
-	 * @returns {JSX.Element} - renders a div element with the "container" class and calls
-	 * two render functions renderHours() & renderEvents()
-	 */
+	const hours = renderHours()
+	const events = renderEvents()
 
 	return (
 		<div className="container">
-			{renderHours()} {renderEvents()}
+			{hours} {events}
 		</div>
 	)
 }
