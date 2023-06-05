@@ -10,7 +10,7 @@
 
 - #### [Usage.md](./frontend_senior/src/Usage.md)
 
-- ### [App Flowchart](./frontend_senior/src/docs/app-diagram.jpeg)
+- #### [App Flowchart](./frontend_senior/src/docs/app-diagram.jpeg)
 
 - #### [Online deploy](https://calendar-app-test.netlify.app/)
 
