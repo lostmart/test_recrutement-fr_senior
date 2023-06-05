@@ -64,7 +64,7 @@ inside the ```src``` folder you'll find:
          ├── abstracts          # ( _colors.scss & _variables.scss )
          ├── base               # ( _reset.scss & _typography.scss )
          ├── layout             # ( _container.scss & _hourContainer.scss )
-    ├── Usage.md                # Documentation that complements docsJs
+    ├── Usage.md               # Documentation that complements docsJs
     └── App.js
     └── index.js
 ```
