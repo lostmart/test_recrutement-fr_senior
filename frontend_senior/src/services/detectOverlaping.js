@@ -51,7 +51,7 @@ const detectOverlaping = (events) => {
 				events.forEach((event, indx) => {
 					const eventCount = events.length
 
-					event.width = 100 / eventCount
+					event.width = 99.9 / eventCount
 					if (indx > 0) {
 						event.left = (100 / events.length) * indx
 					}
