@@ -10,7 +10,7 @@ class MinutesFormat {
 	/**
 	 * Return the number of minutes based on the hours provided
 	 * the minutes calculated are based on the start of the day (9 AM)
-	 * {@link https://github.com/lostmart/test_recrutement-fr_senior/blob/master/Readme.md}
+	 * {@link https://github.com/lostmart/test_recrutement-fr_senior/blob/master/frontend_senior/src/Usage.md}
 	 * @returns {number}
 	 */
 	get hoursToMinutes() {

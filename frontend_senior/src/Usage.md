@@ -1,6 +1,6 @@
 ## Installation:
 
-To run the app locally follow these steps: 
+To run the app locally follow these steps:
 
 ### 1. Clone it on your computer
 
@@ -25,8 +25,28 @@ The most pertinent dependencies are:
 		"react-scripts": "5.0.1",
 ```
 
-### 3. Run ``` npm start ``` on your terminal
+### 3. Run `npm start` on your terminal
 
 ---
 
-### EventModel
+## Services:
+
+- ### EventModel
+
+  ```
+    This module defines the EventModel class,
+    which represents an event. The class has several properties
+    and methods that define the behavior and characteristics of
+    an event.
+    This class formats an object ready to be used by the app.
+
+    It also uses anothjer class called "MinutesModel"
+
+  ```
+
+- ### MinutesModel
+
+  ```
+  This module takes the provided time and returns the sum of it in minutes
+
+  ```
