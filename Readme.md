@@ -12,6 +12,8 @@
 
 - #### [App Flowchart](./frontend_senior/src/docs/app-diagram.jpeg)
 
+- ### [Algorithm Flowchart]
+
 - #### [Online deploy](https://calendar-app-test.netlify.app/)
 
 ---

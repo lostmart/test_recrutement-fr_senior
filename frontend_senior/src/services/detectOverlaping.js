@@ -10,7 +10,7 @@ const detectOverlaping = (events) => {
 
 	/**
 	 * @param {Array<Array>} arr - An array of arrays to merge.
-	 *	@returns {Array<Array>} - The merged array.
+	 * @returns {Array<Array>} - The merged array.
 	 * @returns
 	 */
 	const mergeArrays = (arr) => {
@@ -60,6 +60,7 @@ const detectOverlaping = (events) => {
 		})
 	}
 
+	/*  initialization    */
 	for (let i = 0; i < events.length - 1; i++) {
 		/* current event  */
 		const currentEvent = events[i]

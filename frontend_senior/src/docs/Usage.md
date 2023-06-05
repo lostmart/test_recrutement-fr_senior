@@ -40,7 +40,26 @@ The most pertinent dependencies are:
     an event.
     This class formats an object ready to be used by the app.
 
-    It also uses anothjer class called "MinutesModel"
+    It also uses another class called "MinutesModel"
+  ```
+
+  EventModel schema:
+
+  ```javascript
+  {
+    duration: string
+    id: number
+    left: number
+    start: string
+    timeInMinutes: object {
+      time: string
+      hoursToMinutes: getter function => returns number
+      minutesToMinutes: getter function => return number
+      totalMinutes: getter function => return number
+    }
+    width: number
+
+  }
 
   ```
 
