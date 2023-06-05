@@ -8,7 +8,7 @@
 
 - #### [General Features](#features)
 
-- #### [Usage.md](./frontend_senior/src/Usage.md)
+- #### [Usage.md](./frontend_senior/src/docs/Usage.md)
 
 - #### [App Flowchart](./frontend_senior/src/docs/app-diagram.jpeg)
 
