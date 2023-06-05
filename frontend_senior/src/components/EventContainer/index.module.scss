@@ -9,11 +9,13 @@
 	position: absolute;
 	cursor: pointer;
 	transition: all 250ms ease-in-out;
-	font-size: calc(1vh + 10px);
+	font-size: calc(0.1vw + 10px);
+	overflow-y: hidden;
 
 	&:hover {
 		/** background-color: $prim-clr; */
 		opacity: 0.85;
 		font-size: 95%;
+		overflow-y:visible;
 	}
 }

@@ -35,16 +35,20 @@ const detectOverlaping = (events) => {
 		return merged
 	}
 
+	/**
+	 *Adjusts the width and position of events in a row.
+	 * @param {Array<Array<Object>>} eventsArray - An array of arrays containing events.
+	 */
+
 	const adjustEventsInRow = (eventsArray) => {
 		eventsArray.forEach((events) => {
 			if (events.length > 1) {
 				events.forEach((event, indx) => {
 					const eventCount = events.length
 
-					event.width = 99.3 / eventCount
+					event.width = 100 / eventCount
 					if (indx > 0) {
 						event.left = (100 / events.length) * indx
-						console.log(indx)
 					}
 				})
 			}
