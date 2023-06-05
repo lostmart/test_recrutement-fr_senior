@@ -8,8 +8,6 @@
 
 - #### [General Features](#features)
 
-- #### Front installation
-
 - #### [Usage.md](./frontend_senior/src/Usage.md)
 
 - #### [Online deploy](https://calendar-app-test.netlify.app/)
@@ -24,7 +22,7 @@ In this web app you'll find a site that shows a timetable that shows a list of e
 
 ## [Features]
 
-The app is based off a mock data foun in [src/data/input.json](https://github.com/lostmart/test_recrutement-fr_senior/blob/master/frontend_senior/src/data/input.json) and it shows all events listed chronollogically. 
+The app is based off a mock data foun in [src/data/input.json](https://github.com/lostmart/test_recrutement-fr_senior/blob/master/frontend_senior/src/data/input.json) and it shows all events listed chronollogically.
 
 ---
 
@@ -32,9 +30,9 @@ The app is based off a mock data foun in [src/data/input.json](https://github.co
 
 ## Repository Structure:
 
-inside the ```src``` folder you'll find:
+inside the `src` folder you'll find:
 
-``` 
+```
     ├── components              # (EventConotainer & HourContainer)
     ├── data                    # Mock data file
     ├── services                # Dirrerent helper functions
