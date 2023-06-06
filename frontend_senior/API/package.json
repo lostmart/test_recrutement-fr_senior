@@ -1,0 +1,32 @@
+{
+	"name": "api",
+	"version": "1.0.0",
+	"description": "API to provide events data for a calendar web app",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lostmart/test_recrutement-fr_senior.git#v-API"
+	},
+	"keywords": [
+		"API",
+		"NodeJs",
+		"express",
+		"mongoDB"
+	],
+	"author": "martin p",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/lostmart/test_recrutement-fr_senior/issues"
+	},
+	"homepage": "https://github.com/lostmart/test_recrutement-fr_senior/tree/v-API#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22"
+	}
+}
