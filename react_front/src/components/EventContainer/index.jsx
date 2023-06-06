@@ -22,6 +22,7 @@ const EventContainer = ({ eventDetails }) => {
 		eventDetails.timeInMinutes.totalMinutes
 	)
 	const endTime = placeCalculator(eventDetails.duration)
+
 	return (
 		<div
 			onClick={showDetails}

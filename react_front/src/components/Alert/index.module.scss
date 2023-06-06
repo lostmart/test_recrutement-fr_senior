@@ -1,0 +1,12 @@
+@import '../../styles/abstracts/colors';
+
+.container {
+	position: absolute;
+	background-color: rgba($four-clr, 0.2);
+	border: 1px solid rgba($four-clr, 0.4);
+	padding: 1em;
+	z-index: 1;
+	top: 1em;
+	right: 1em;
+	pointer-events: none;
+}

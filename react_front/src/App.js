@@ -4,6 +4,8 @@ import orderedEvents from './services/dataFetcher'
 /*  components  */
 import HourContainer from './components/HourContainer' // background division / color
 import EventContainer from './components/EventContainer' // container for all the even data passed as prop
+import Alert from './components/Alert'
+
 
 /** Render the hour containers for a time range of 9 AM to 9 PM
  * each element corresponds an hour
@@ -42,6 +44,7 @@ function App() {
 
 	return (
 		<div className="container">
+			<Alert text="Offline Mode" />
 			{hours} {events}
 		</div>
 	)
