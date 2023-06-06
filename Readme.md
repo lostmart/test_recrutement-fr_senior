@@ -42,6 +42,7 @@ inside the `src` folder you'll find:
     ├── components              # (EventConotainer & HourContainer)
     ├── data                    # Mock data file
     ├── services                # Dirrerent helper functions
+         ├── dataFetcher        # ( _colors.scss & _variables.scss )
     ├── Styles                  # scss files
          ├── abstracts          # ( _colors.scss & _variables.scss )
          ├── base               # ( _reset.scss & _typography.scss )
