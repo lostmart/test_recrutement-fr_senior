@@ -1,6 +1,6 @@
 ## Welcome to this Calendar app 👋
 
-![alt text](/src/docs/screenshot.jpg)
+![alt text](./src/docs/screenshot.jpg)
 
 ## Table of Contents
 
