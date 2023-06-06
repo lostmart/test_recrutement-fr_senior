@@ -2,6 +2,3 @@ node_modules
 .DS_STORE
 .idea
 *-lock.json
-
-frontend_senior/node_modules
-frontend_senior/API/node_modules
