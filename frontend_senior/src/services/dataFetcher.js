@@ -2,7 +2,7 @@ import inputData from '../data/input.json'
 
 /* helpers  */
 import EventModel from '../services/EventModel'
-import orderCronologically from '../services/OrderCronollogically'
+import orderCronologically from './orderCronollogically'
 import detectOverlaping from '../services/detectOverlaping'
 
 /**

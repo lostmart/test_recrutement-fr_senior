@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 
 /*  helpers  */
-import placeCalculator from '../../services/PlaceCalculator'
+import placeCalculator from '../../services/placeCalculator'
 
 /**
  * Returns a React element that accepts 3 props

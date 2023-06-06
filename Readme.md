@@ -42,7 +42,12 @@ inside the `src` folder you'll find:
     ├── components              # (EventConotainer & HourContainer)
     ├── data                    # Mock data file
     ├── services                # Dirrerent helper functions
-         ├── dataFetcher        # ( _colors.scss & _variables.scss )
+         ├── dataFetcher        # imports data from mock data and formats it using EventModel
+         ├── detectOverlaping   # accepts the list of events and checks overlaping and modifies its width and left position if necessary
+         ├── EventModel         # class for each event to ensure the right event data shcema 
+         ├── MinutesModel       # class to convert each starting time into minutes (hours + minutes)
+         ├── orderCronollogically # fn that return all the events ordered chonologically (ascending)
+         ├── placeCalculator    # fn that returns a porcentage based on the total length of 12 hours
     ├── Styles                  # scss files
          ├── abstracts          # ( _colors.scss & _variables.scss )
          ├── base               # ( _reset.scss & _typography.scss )
