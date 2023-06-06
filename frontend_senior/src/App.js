@@ -1,5 +1,5 @@
-import rederReadyEvents from './services/dataFetcher'
-import { orderedEvents } from './services/dataFetcher'
+/*  import ready to render events    */
+import orderedEvents from './services/dataFetcher'
 
 /*  components  */
 import HourContainer from './components/HourContainer' // background division / color

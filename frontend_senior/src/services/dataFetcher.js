@@ -20,6 +20,6 @@ const formattedData = inputData.map(formatData)
 
 export const orderedEvents = orderCronologically(formattedData)
 
-const rederReadyEvents = detectOverlaping(orderedEvents)
+detectOverlaping(orderedEvents)
 
-export default rederReadyEvents
+export default orderedEvents
